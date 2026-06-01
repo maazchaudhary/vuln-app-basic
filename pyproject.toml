@@ -1,0 +1,14 @@
+[project]
+name = "vuln-app-cc"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.136.3",
+    "itsdangerous>=2.2.0",
+    "python-dotenv>=1.2.2",
+    "python-multipart>=0.0.30",
+    "sqlalchemy>=2.0.50",
+    "uvicorn>=0.48.0",
+]
