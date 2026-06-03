@@ -100,9 +100,10 @@ If asked to demonstrate or fix vulnerabilities, prioritize educational clarity o
 When implementing features:
 
 1. Read PRD.md for product requirements.
-2. Read SDD.md for system design constraints.
-3. Read feature specifications in `.claude/Spec/`.
-4. Follow the associated `*-plan.md` file.
-5. Keep implementation aligned with the feature specification.
+2. Read TDD.md for technical design constraints.
+3. Read Spec.md for detailed implementation specifications.
+4. Read feature specifications in `.claude/Specs/`.
+5. Follow the associated `*-plan.md` file.
+6. Keep implementation aligned with the feature specification.
 
 Feature files take precedence over implementation assumptions.
