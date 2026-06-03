@@ -4,16 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vulnerable Web Application</title>
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = saved === 'dark' || saved === 'light' ? saved : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch(e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body class="auth-body">
 
   <header class="page-header">
     <span class="page-header__title">Vulnerable Web Application</span>
-    <div class="page-header__logos">
-      <img src="/static/images/PUCIT_Logo.png" alt="PUCIT Logo">
-      <img src="/static/images/blue-logo-scl2.png" alt="SCL Logo">
-      <img src="/static/images/excaliat-logo.png" alt="Excaliat Logo">
+    <div class="page-header__right">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">🌙 Dark</button>
+      <div class="page-header__logos">
+        <img src="/static/images/PUCIT_Logo.png" alt="PUCIT Logo">
+        <img src="/static/images/blue-logo-scl2.png" alt="SCL Logo">
+        <img src="/static/images/excaliat-logo.png" alt="Excaliat Logo">
+      </div>
     </div>
   </header>
 
@@ -99,6 +112,22 @@
         errDiv.classList.add('visible');
       }
     });
+  </script>
+  <script>
+    (function() {
+      var btn = document.getElementById('theme-toggle');
+      function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        try { localStorage.setItem('theme', theme); } catch(e) {}
+        btn.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+        btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+      applyTheme(document.documentElement.getAttribute('data-theme') || 'light');
+      btn.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme');
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+      });
+    })();
   </script>
 </body>
 </html>
