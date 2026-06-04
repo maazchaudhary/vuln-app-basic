@@ -536,3 +536,125 @@ button[type="submit"]:active { transform: scale(0.98); }
   outline: 2px solid var(--color-label);
   outline-offset: 2px;
 }
+
+/* ===== Version Modal ===== */
+.version-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.version-modal__content {
+  background: var(--color-bg-surface);
+  border-radius: 16px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.version-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.version-modal__header h2 {
+  color: var(--color-text-header);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.version-modal__close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.version-modal__close:hover {
+  background: var(--color-bg-input);
+  color: var(--color-text-primary);
+}
+
+.version-modal__body {
+  padding: 1.5rem 2rem;
+}
+
+.version-modal__version {
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.version-modal__features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.version-modal__features li {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.version-modal__footer {
+  padding: 1rem 2rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.version-modal .btn-primary {
+  padding: 0.6rem 1.5rem;
+  background: var(--color-text-header);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  letter-spacing: 0.03em;
+}
+
+.version-modal .btn-primary:hover {
+  background: #283593;
+}
+
+.version-modal .btn-primary:active {
+  transform: scale(0.98);
+}

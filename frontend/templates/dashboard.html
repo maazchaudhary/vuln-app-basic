@@ -18,6 +18,27 @@
 </head>
 <body class="dashboard-body">
 
+  <!-- Version Announcement Modal -->
+  <div id="version-modal" class="version-modal">
+    <div class="version-modal__content">
+      <div class="version-modal__header">
+        <h2>🎉 New Version Available</h2>
+        <button class="version-modal__close" id="version-modal-close">&times;</button>
+      </div>
+      <div class="version-modal__body">
+        <p class="version-modal__version">Version <strong>V0.1.3</strong></p>
+        <ul class="version-modal__features">
+          <li>✨ Light/Dark Mode toggle added</li>
+          <li>🔒 MD5 replaced with Bcrypt for secure password hashing</li>
+          <li>🛡️ SQL Injection vulnerabilities fixed</li>
+        </ul>
+      </div>
+      <div class="version-modal__footer">
+        <button class="btn-primary" id="version-modal-ok">Got it!</button>
+      </div>
+    </div>
+  </div>
+
   <header class="page-header">
     <span class="page-header__title">Vulnerable Web Application</span>
     <div class="page-header__right">
@@ -155,6 +176,45 @@
       btn.addEventListener('click', function() {
         var current = document.documentElement.getAttribute('data-theme');
         applyTheme(current === 'dark' ? 'light' : 'dark');
+      });
+    })();
+
+    // Version Modal functionality
+    (function() {
+      var modal = document.getElementById('version-modal');
+      var closeBtn = document.getElementById('version-modal-close');
+      var okBtn = document.getElementById('version-modal-ok');
+
+      function closeModal() {
+        modal.style.display = 'none';
+        try { localStorage.setItem('v0.1.3-seen', 'true'); } catch(e) {}
+      }
+
+      // Check if user has seen this version
+      try {
+        var hasSeen = localStorage.getItem('v0.1.3-seen');
+        if (!hasSeen) {
+          modal.style.display = 'flex';
+        }
+      } catch(e) {
+        modal.style.display = 'flex';
+      }
+
+      closeBtn.addEventListener('click', closeModal);
+      okBtn.addEventListener('click', closeModal);
+
+      // Close on clicking outside modal content
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+          closeModal();
+        }
       });
     })();
   </script>
