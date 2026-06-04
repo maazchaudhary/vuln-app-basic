@@ -22,11 +22,10 @@ def signup(username: str = Form(None), email: str = Form(None), password: str = 
 
     hashed = hash_password(str(password))
 
-    query = ("INSERT INTO users (username, email, password) VALUES ('"
-             + str(username) + "', '" + str(email) + "', '" + hashed + "')")
+    query = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)"
     try:
         conn = get_db()
-        conn.execute(query)
+        conn.execute(query, (username, email, hashed))
         conn.commit()
         conn.close()
     except Exception as e:

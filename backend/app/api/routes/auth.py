@@ -60,11 +60,11 @@ def search_user(q: str = None):
     if not q:
         return HTMLResponse('Error: Query parameter required')
 
-    query = ("SELECT username, email FROM users WHERE username LIKE '%"
-             + str(q) + "%' OR email LIKE '%" + str(q) + "%'")
+    pattern = f"%{q}%"
+    query = "SELECT username, email FROM users WHERE username LIKE ? OR email LIKE ?"
     try:
         conn = get_db()
-        results = conn.execute(query).fetchall()
+        results = conn.execute(query, (pattern, pattern)).fetchall()
         conn.close()
 
         html = f"<h2>Search Results for: {q}</h2>"
