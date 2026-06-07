@@ -45,3 +45,6 @@ docs/BACKEND.md
 
 # uv lock file (reproducibility not needed for this project)
 uv.lock
+
+#Codex 
+AGENTS.md
